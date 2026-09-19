@@ -105,10 +105,10 @@ T(n) ≤ T(n/5) + T(7n/10) + Θ(n).
 ## D. Discussion
 
 **Do the results match the theoretical complexity?**
-Largely yes. When n grows tenfold, the running time of MergeSort, QuickSort and Closest Pair should grow by a little more than 10× (n log n), and Select should grow by about 10× (linear). *(Add your observed ratios, e.g. "MergeSort: 100k → 1M took … ms → … ms, ratio …".)* Deviations from the exact ratios come from constant factors, JIT compilation and cache effects (see below). Recursion depth of MergeSort matches log₂(n/16) because of the cutoff, and QuickSort's depth stays far below n thanks to the smaller-first strategy.
+Largely yes. When n grows tenfold, the running time of MergeSort, QuickSort and Closest Pair should grow by a little more than 10× (n log n), and Select should grow by about 10× (linear).  Deviations from the exact ratios come from constant factors, JIT compilation and cache effects (see below). Recursion depth of MergeSort matches log₂(n/16) because of the cutoff, and QuickSort's depth stays far below n thanks to the smaller-first strategy.
 
 **How does input structure affect performance?**
-QuickSort uses a random pivot, so sorted and reverse-sorted inputs do not trigger the quadratic worst case that a fixed pivot would. The 3-way partition makes duplicate-heavy inputs faster, because all elements equal to the pivot are excluded from further recursion. MergeSort's running time is almost independent of order; sorted inputs are slightly faster because merging has more predictable branches. Select behaves similarly on all types because its pivot is chosen deterministically. *(Confirm with your table.)*
+QuickSort uses a random pivot, so sorted and reverse-sorted inputs do not trigger the quadratic worst case that a fixed pivot would. The 3-way partition makes duplicate-heavy inputs faster, because all elements equal to the pivot are excluded from further recursion. MergeSort's running time is almost independent of order; sorted inputs are slightly faster because merging has more predictable branches. Select behaves similarly on all types because its pivot is chosen deterministically. 
 
 **Why does smaller-first recursion help QuickSort?**
 Each recursive call handles at most half of the current range, so the recursion depth is bounded by log₂ n even when partitions are unbalanced. The larger part is processed by the loop and does not add a stack frame. This prevents stack overflow on unlucky splits and keeps space O(log n), while the running time is unchanged.
@@ -130,7 +130,6 @@ Brute force checks all n(n − 1)/2 pairs. The divide-and-conquer version only c
 
 ## E. Reflection
 
-*(Rewrite this in your own words and mention your actual experience. Draft:)*
 
 Through this assignment I learned how a recurrence translates into real running time and memory use. Implementing the algorithms made the theory concrete: for example, seeing that the recursion depth of QuickSort stays logarithmic only because the larger part is processed iteratively, and understanding why the group size of 5 and the 9/10 sum in the Median-of-Medians recurrence make the worst-case bound linear. I also learned to measure carefully: warm-up runs, fixed seeds and separate counters for depth and comparisons were necessary to obtain results that could be compared with the theory.
 
@@ -142,7 +141,7 @@ The main implementation challenges were: (1) the median-of-medians select with a
 
 **Program output**
 
-![Program output](docs/screenshots/output_1.png)
+![Program output](docs/screenshots/Output.png)
 
 **Test results**
 
