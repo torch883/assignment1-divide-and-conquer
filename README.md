@@ -142,7 +142,7 @@ The main implementation challenges were: (1) the median-of-medians select with a
 
 **Program output**
 
-![Program output](docs/screenshots/output_1.png)
+![Program output](docs/screenshots/Output.png)
 
 **Test results**
 
